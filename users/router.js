@@ -91,7 +91,9 @@ router.post('/users', (req, res, next) => {
   }
 
   let { fullname, username, password } = req.body;
-  fullname = fullname.trim();
+  if (fullname) {
+    fullname = fullname.trim();
+  }
 
   return User.hashPassword(password)
     .then(digest => {
