@@ -4,6 +4,17 @@ const express = require('express');
 const User = require('./model');
 const router = express.Router();
 
+// router.get('/users', (req, res, next) => {
+//   User.find()
+//     //.populate('tags')
+//     .then(results => {
+//       res.json(results);
+//     })
+//     .catch(err => {
+//       next(err);
+//     });
+// });
+
 router.post('/users', (req, res, next) => {
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
@@ -103,4 +114,4 @@ router.post('/users', (req, res, next) => {
     });
 });
 
-module.exports.router;
+module.exports = router;
