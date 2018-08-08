@@ -5,16 +5,16 @@ const User = require('./model');
 const Question = require('../questions/questionModel');
 const router = express.Router();
 
-router.get('/users', (req, res, next) => {
-  User.find()
-    //.populate('tags')
-    .then(results => {
-      res.json(results);
-    })
-    .catch(err => {
-      next(err);
-    });
-});
+// router.get('/users', (req, res, next) => {
+//   User.find()
+//     //.populate('tags')
+//     .then(results => {
+//       res.json(results);
+//     })
+//     .catch(err => {
+//       next(err);
+//     });
+// });
 
 router.post('/users', (req, res, next) => {
   const requiredFields = ['username', 'password'];
