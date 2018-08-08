@@ -26,7 +26,7 @@ router.get('/questions', (req, res, next) => {
   User.findOne({ username })
     .then(result => {
       if (result) {
-        res.json(result.question[0]);
+        res.json(result.question[result.current]);
       } else {
         next();
       }
@@ -51,7 +51,7 @@ router.put('/questions', (req, res, next) => {
     .then(result => {
       if (result) {
         //console.log(result);
-        return Question.findOne({question: result.question[0].question})
+        return Question.findOne({question: result.question[result.current].question})
           .then(q => {
             let payload = {};
             let gotIt = (q.answer === answer);

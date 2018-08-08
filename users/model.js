@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   fullname: { type: String},
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  question: { type: Array, default: [] }
+  question: { type: Array, default: [] },
+  current: { type: Number, default: 0 }
 });
 
 userSchema.set('toObject', {

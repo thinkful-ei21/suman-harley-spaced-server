@@ -107,13 +107,14 @@ router.post('/users', (req, res, next) => {
         .then(questions => {
           const question = [];
           if (Array.isArray(questions)) {
-            questions.forEach(q => {
+            for (let i = 1; i <= questions.length; i++) {
               question.push({
-                question:q.question,
+                question: questions[i].question,
                 attempts: 0,
-                correct: 0
+                correct: 0,
+                next: (i % questions.length)
               });
-            });
+            }
           }
           newUser.question = question;
           return User.create(newUser);
