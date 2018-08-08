@@ -54,12 +54,10 @@ router.put('/questions', (req, res, next) => {
         return Question.findOne({question: result.question[0].question})
           .then(q => {
             let payload = {};
-            if (q.answer === answer) {
-              payload = updatedQuestions(result.question, true);
-            } else {
-              payload = updatedQuestions(result.question, false);
-            }
+            let gotIt = (q.answer === answer);
+            payload = updatedQuestions(result.question, gotIt);
             payload.updatedQuestion.answer = q.answer;
+            payload.updatedQuestion.result = gotIt;
             return payload;
           });
       } else {
