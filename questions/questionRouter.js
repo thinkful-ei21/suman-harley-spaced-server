@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const jwtDecode = require('jwt-decode');
 
-const Question = require('./questionModel');
 const User = require('../users/model');
 
 const router = express.Router();

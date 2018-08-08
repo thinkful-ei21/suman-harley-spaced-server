@@ -2,6 +2,7 @@
 
 const express = require('express');
 const User = require('./model');
+const Question = require('../questions/questionModel');
 const router = express.Router();
 
 router.get('/users', (req, res, next) => {
@@ -102,7 +103,21 @@ router.post('/users', (req, res, next) => {
         password: digest,
         fullname
       };
-      return User.create(newUser);
+      return Question.find()
+        .then(questions => {
+          const question = [];
+          if (Array.isArray(questions)) {
+            questions.forEach(q => {
+              question.push({
+                question:q.question,
+                attempts: 0,
+                correct: 0
+              });
+            });
+          }
+          newUser.question = question;
+          return User.create(newUser);
+        });
     })
     .then(result => {
       return res.status(201).location(`/api/users/${result.id}`).json(result);
