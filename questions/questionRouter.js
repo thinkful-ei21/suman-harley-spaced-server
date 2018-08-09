@@ -70,14 +70,24 @@ router.put('/questions', (req, res, next) => {
       }
     })
     .then(result => {
+      //console.log(result.newQuestions);
+      //console.log(Object.keys(result));
+      //console.log(username);
       if (result) {
+        //console.log(result.newQuestions);
         res.json(result.updatedQuestion);
-        return User.findOneAndUpdate({username}, {question: result.newQuestions});
+        return User.findOneAndUpdate(
+          {username},{$set: {
+            question: result.newQuestions,
+            current: result.newHead
+          }}
+        );
       } else {
         next();
       }
     })
     .catch(err => {
+      console.log(err);
       next(err);
     });
 });
