@@ -4,9 +4,8 @@
   "description": "Template for an Express backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
-    "mocha": "mocha --exit --file test/setup.test.js '!(node_modules)/**/*test.js'",
-    "mocha-exit0": "mocha --exit --file test/setup.test.js '!(node_modules)/**/*test.js' || true",
+    "start": "nodemon index.js",    
+    "mocha-exit0": "mocha --exit",
     "test": "nodemon --exec npm run mocha-exit0",
     "cover": "nodemon --exec nyc --reporter=lcov --reporter=text-summary npm run mocha-exit0",
     "heroku": "node index.js",
