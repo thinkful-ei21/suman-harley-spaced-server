@@ -61,8 +61,12 @@ router.put('/questions', (req, res, next) => {
             let payload = {};
             let gotIt = (q.answer === answer);
             payload = updatedQuestions(result.question, gotIt, result.current);
-            payload.updatedQuestion.answer = q.answer;
-            payload.updatedQuestion.result = gotIt;
+            payload.updatedQuestion = { 
+              ...payload.updatedQuestion, 
+              answer: q.answer,
+              result: gotIt
+              };
+            console.log(username);
             return payload;
           });
       } else {
